@@ -1,0 +1,181 @@
+.app-container {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .sidebar {
+    width: 220px;
+    background: #1e293b;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .logo {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .sidebar nav ul {
+    list-style: none;
+  }
+  
+  .sidebar nav ul li {
+    margin: 1rem 0;
+  }
+  
+  .sidebar nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    transition: background 0.3s;
+  }
+  
+  .sidebar nav ul li a:hover,
+  .sidebar nav ul li a.active {
+    background: var(--green);
+    color: #fff;
+  }
+  
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+  
+  :root {
+    --bg-dark: #0f172a;
+    --card-dark: #1e293b;
+    --green: #22c55e;
+    --text-light: #f8fafc;
+    --text-muted: #94a3b8;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: var(--text-light);
+    min-height: 100vh;
+    padding: 2rem;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .page-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .card {
+    background: rgba(30, 41, 59, 0.9);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  
+  .card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+  }
+  
+  /* Form Styling */
+  .ride-form .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .ride-form label {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+  
+  .ride-form input {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+    background: #334155;
+    color: var(--text-light);
+  }
+  
+  .ride-form input::placeholder {
+    color: #cbd5e1;
+  }
+  
+  /* Buttons */
+  .btn {
+    background: var(--green);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  
+  .btn:hover {
+    background: #16a34a;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+  }
+  
+  .btn.small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  /* Tables */
+  .rides-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  .rides-table th, .rides-table td {
+    padding: 0.8rem;
+    text-align: left;
+  }
+  
+  .rides-table th {
+    background: #334155;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .rides-table tr:nth-child(even) {
+    background: #1e293b;
+  }
+  
+  .rides-table tr:nth-child(odd) {
+    background: #0f172a;
+  }
+  
+  .rides-table td {
+    font-size: 0.95rem;
+  }
+  
+  
