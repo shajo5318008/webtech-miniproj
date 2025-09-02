@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoTransit | Dashboard</title>
+  <link rel="stylesheet" href="./pradnya_style.css" />
+  <!-- Lucide icons CDN (lightweight icons) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="dashboard-container">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <h2>EcoTransit</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="active"><a href="dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+          <li><a href="analytics.html"><i data-lucide="bar-chart-3"></i> Analytics</a></li>
+          <li><a href="community.html"><i data-lucide="users"></i> Community</a></li>
+          <li><a href="settings.html"><i data-lucide="settings"></i> Settings</a></li>
+          <li><a href="logout.html"><i data-lucide="log-out"></i> Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <h1 class="dashboard-title">Welcome Back!</h1>
+      <p class="dashboard-subtitle">Choose an option below or review your latest activity</p>
+
+      <!-- Option Cards -->
+      <div class="dashboard-grid">
+        <a href="plan-trip.html" class="dashboard-card">🚗<br>Plan a Trip</a>
+        <a href="weekly-analytics.html" class="dashboard-card">📊<br>Weekly Analytics</a>
+        <a href="carpool.html" class="dashboard-card">🤝<br>Carpooling</a>
+        <a href="user-score.html" class="dashboard-card">⭐<br>User Score</a>
+        <a href="charging-map.html" class="dashboard-card">⚡<br>Charging Map</a>
+      </div>
+
+      <!-- Recent Trips Section -->
+      <section class="recent-trips">
+        <h2>Recent Trips</h2>
+        <table class="trips-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>From → To</th>
+              <th>Distance (km)</th>
+              <th>Money Saved (₹)</th>
+              <th>CO₂ Saved (kg)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>02 Sept</td>
+              <td>Delhi → Gurgaon</td>
+              <td>25</td>
+              <td>120</td>
+              <td>3.5</td>
+            </tr>
+            <tr>
+              <td>31 Aug</td>
+              <td>Noida → Delhi</td>
+              <td>18</td>
+              <td>85</td>
+              <td>2.1</td>
+            </tr>
+            <tr>
+              <td>29 Aug</td>
+              <td>Delhi → Ghaziabad</td>
+              <td>32</td>
+              <td>150</td>
+              <td>4.2</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+    
+  </div>
+  <script>
+    lucide.createIcons(); // activate sidebar icons
+  </script>
+</body>
+</html>
