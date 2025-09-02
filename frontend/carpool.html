@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoTransit | Carpool</title>
+  <link rel="stylesheet" href="carpool.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2 class="logo"><i class="fas fa-leaf"></i> EcoTransit</h2>
+      <nav>
+        <ul>
+          <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+          <li><a href="weekly.html"><i class="fas fa-calendar-week"></i> Weekly Stats</a></li>
+          <li><a href="challenges.html"><i class="fas fa-trophy"></i> Challenges</a></li>
+          <li><a href="carpool.html" class="active"><i class="fas fa-car-side"></i> Carpool</a></li>
+          <li><a href="community.html"><i class="fas fa-users"></i> Community</a></li>
+          <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+  
+  
+  
+  <div class="container">
+
+    <h1 class="page-title"><i class="fas fa-car-side"></i> Carpool</h1>
+
+    <!-- Post a Ride Section -->
+    <section class="card">
+      <h2>🚗 Post a Carpool Ride</h2>
+      <form class="ride-form">
+        <div class="form-group">
+          <label for="start">Start Location</label>
+          <input type="text" id="start" placeholder="Enter start location">
+        </div>
+        <div class="form-group">
+          <label for="destination">Destination</label>
+          <input type="text" id="destination" placeholder="Enter destination">
+        </div>
+        <div class="form-group">
+          <label for="time">Time/Date</label>
+          <input type="datetime-local" id="time">
+        </div>
+        <div class="form-group">
+          <label for="seats">Seats Available</label>
+          <input type="number" id="seats" min="1" value="1">
+        </div>
+        <button type="submit" class="btn">Post Ride</button>
+      </form>
+    </section>
+
+    <!-- Available Rides Section -->
+    <section class="card">
+      <h2>📋 Available Rides</h2>
+      <table class="rides-table">
+        <thead>
+          <tr>
+            <th>Start</th>
+            <th>Destination</th>
+            <th>Time</th>
+            <th>Posted By</th>
+            <th>Seats</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Delhi</td>
+            <td>Noida</td>
+            <td>10:00 AM, 5 Sep</td>
+            <td>UserA</td>
+            <td>3</td>
+            <td><button class="btn small">Join</button></td>
+          </tr>
+          <tr>
+            <td>Gurgaon</td>
+            <td>Delhi</td>
+            <td>8:30 AM, 6 Sep</td>
+            <td>UserB</td>
+            <td>2</td>
+            <td><button class="btn small">Join</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Your Rides Section -->
+    <section class="card">
+      <h2>✅ Your Rides</h2>
+      <table class="rides-table">
+        <thead>
+          <tr>
+            <th>Start</th>
+            <th>Destination</th>
+            <th>Time</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Noida</td>
+            <td>Delhi</td>
+            <td>7:00 AM, 2 Sep</td>
+            <td>Joined</td>
+          </tr>
+          <tr>
+            <td>Delhi</td>
+            <td>Jaipur</td>
+            <td>6:00 PM, 1 Sep</td>
+            <td>Posted</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+</body>
+</html>
