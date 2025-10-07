@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoTransit | Charging Map</title>
+  <link rel="stylesheet" href="./pradnya_style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="dashboard-container">
+    
+    <aside class="sidebar">
+      <div class="logo">
+        <h2>EcoTransit</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+          <li><a href="analytics.html"><i data-lucide="bar-chart-3"></i> Analytics</a></li>
+          <li><a href="community.html"><i data-lucide="users"></i> Community</a></li>
+          <li><a href="settings.html"><i data-lucide="settings"></i> Settings</a></li>
+          <li><a href="logout.html"><i data-lucide="log-out"></i> Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="dashboard-main">
+      <h1 class="dashboard-title">EV Charging Stations Map</h1>
+      <p class="dashboard-subtitle">Find nearby charging points for your electric vehicle.</p>
+
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d131434.43493713764!2d73.83663667988206!3d15.383984843917903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scharging%20station%20near%20Verna%2C%20Goa!5e1!3m2!1sen!2sin!4v1759842378123!5m2!1sen!2sin" 
+        width="600" 
+        height="450" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+      </div>
+    </main>
+    
+  </div>
+  <script>
+    lucide.createIcons(); // activate sidebar icons
+  </script>
+</body>
+</html>

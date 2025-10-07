@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoTransit | User Score</title>
+  <link rel="stylesheet" href="./pradnya_style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  
+</head>
+
+<body>
+  <div class="dashboard-container">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">EcoTransit</div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+          <li><a href="analytics.html"><i data-lucide="bar-chart-3"></i> Analytics</a></li>
+          <li><a href="community.html"><i data-lucide="users"></i> Community</a></li>
+          <li><a href="settings.html"><i data-lucide="settings"></i> Settings</a></li>
+          <li><a href="logout.html"><i data-lucide="log-out"></i> Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <h1 class="dashboard-title">User Score & Reputation</h1>
+      <p class="dashboard-subtitle">Rate your fellow travelers and check your own Eco-Score.</p>
+
+      <div class="score-container">
+        
+        <!-- Card 1: Rating -->
+        <div class="score-card">
+          <h3>Rate your last carpool with Fiona</h3>
+          <p>On Tuesday, 07 Oct 2025, from Verna to Panaji</p>
+
+          <div class="star-rating">
+            <input type="radio" id="star5" name="rating" value="5" /><label for="star5">★</label>
+            <input type="radio" id="star4" name="rating" value="4" /><label for="star4">★</label>
+            <input type="radio" id="star3" name="rating" value="3" /><label for="star3">★</label>
+            <input type="radio" id="star2" name="rating" value="2" /><label for="star2">★</label>
+            <input type="radio" id="star1" name="rating" value="1" /><label for="star1">★</label>
+          </div>
+
+          <div class="feedback-tags">
+            <button class="tag-button">👍 Punctual</button>
+            <button class="tag-button">🚗 Smooth Driver</button>
+            <button class="tag-button">💬 Great Conversation</button>
+          </div>
+
+          <textarea class="comment-box" placeholder="Add a public comment..."></textarea>
+          <button class="submit-button">Submit Rating</button>
+        </div>
+
+        <!-- Card 2: User's Score -->
+        <div class="score-card">
+          <h3>Your Eco-Score & Reputation</h3>
+
+          <div class="user-overall-score">
+            <div>4.8 <span style="color: #ffc107;">★</span></div>
+            <p>Based on 25 ratings</p>
+          </div>
+
+          <h4>Badges You've Earned:</h4>
+          <div class="feedback-tags">
+            <span class="tag-badge">👍 Punctual (18)</span>
+            <span class="tag-badge">🎶 Good Music (12)</span>
+            <span class="tag-badge">🧼 Clean Car (15)</span>
+          </div>
+
+          <h4>Your Impact:</h4>
+          <div class="impact-stats">
+            <div><strong>Trips Completed:</strong> 42</div>
+            <div><strong>Passengers Hosted:</strong> 58</div>
+            <div><strong>CO₂ Saved:</strong> 112 kg</div>
+            <div><strong>Money Saved:</strong> ₹8,500</div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
