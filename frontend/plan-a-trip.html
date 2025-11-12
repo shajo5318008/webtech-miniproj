@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EcoTransit | Plan a Trip</title>
+  <link rel="stylesheet" href="./pradnya_style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="page-container" style="max-width:1000px;margin:28px auto;padding:18px;">
+    <header style="display:flex;align-items:center;justify-content:space-between;">
+      <h1 style="margin:0">Plan a Trip</h1>
+      <div>
+        <a href="dashboard.html" class="btn" style="text-decoration:none;color:#0b1220;background:#9fffcf;padding:8px 12px;border-radius:8px;">Back to Dashboard</a>
+      </div>
+    </header>
+
+    <main style="margin-top:18px;">
+      <section style="background:#07101a;padding:18px;border-radius:10px;color:#dfffe9;">
+        <form id="planTripForm" style="display:grid;gap:12px;max-width:560px;">
+          <label>
+            <div style="font-size:13px;color:#9fb;margin-bottom:6px">From</div>
+            <input type="text" id="start_location" name="start_location" required />
+          </label>
+
+          <label>
+            <div style="font-size:13px;color:#9fb;margin-bottom:6px">To</div>
+            <input type="text" id="end_location" name="end_location" required />
+          </label>
+
+          <div style="display:flex;gap:12px;">
+            <label style="flex:1">
+              <div style="font-size:13px;color:#9fb;margin-bottom:6px">Date</div>
+              <input type="date" id="date" required />
+            </label>
+            <label style="flex:1">
+              <div style="font-size:13px;color:#9fb;margin-bottom:6px">Time</div>
+              <input type="time" id="time" required />
+            </label>
+          </div>
+
+          <div style="display:flex;gap:12px;">
+            <label style="flex:1">
+              <div style="font-size:13px;color:#9fb;margin-bottom:6px">Available seats</div>
+              <input type="number" id="available_seats" value="1" min="1" required />
+            </label>
+            <label style="flex:1">
+              <div style="font-size:13px;color:#9fb;margin-bottom:6px">Fare (₹) — optional</div>
+              <input type="number" id="fare" step="0.01" />
+            </label>
+          </div>
+
+          <div style="display:flex;gap:8px;">
+            <button type="submit" class="save-btn" style="background:#1bbf6a;color:#012;padding:10px 14px;border-radius:8px;border:none;cursor:pointer;">Create Ride</button>
+            <button type="reset" class="cancel-btn" style="background:transparent;color:#9fb;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:8px;cursor:pointer;">Reset</button>
+          </div>
+
+          <div id="planTripMsg" style="margin-top:8px;font-size:13px;color:#fff" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <!-- Optional quick "recent trips" preview (same id used by dashboard for updates) -->
+      <section style="margin-top:22px;">
+        <h3 style="margin-bottom:8px">Recent Trips</h3>
+        <table style="width:100%;border-collapse:collapse;">
+          <thead style="text-align:left;color:#9fb">
+            <tr>
+              <th>Date</th><th>From → To</th><th>Distance (km)</th><th>Fare (₹)</th><th>Seats</th>
+            </tr>
+          </thead>
+          <tbody id="recentTripsBody">
+            <!-- newly created rides will appear here -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <!-- include your api.js (adjust path if it's in a different folder) -->
+  <script src="js/api.js"></script>
+
+  <script>
+    // Standalone page handler that uses AuthAPI and RidesAPI from api.js
+    (function () {
+      const form = document.getElementById('planTripForm');
+      const msg = document.getElementById('planTripMsg');
+      const tbody = document.getElementById('recentTripsBody');
+
+      function makeTimestamp(dateVal, timeVal) {
+        if (!dateVal) return null;
+        const hhmm = timeVal || '00:00';
+        return `${dateVal} ${hhmm}:00`;
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        msg.style.color = '#fff';
+        msg.textContent = 'Creating ride...';
+
+        const user = AuthAPI.getCurrentUser();
+        if (!user) {
+          alert('Please login first');
+          window.location.href = 'login.html';
+          return;
+        }
+        if (user.role !== 'driver') {
+          msg.style.color = 'salmon';
+          msg.textContent = 'Only drivers can create rides. Switch to a driver account or register as a driver.';
+          return;
+        }
+
+        const start = document.getElementById('start_location').value.trim();
+        const end = document.getElementById('end_location').value.trim();
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+        const seats = parseInt(document.getElementById('available_seats').value || '0', 10);
+        const fare = document.getElementById('fare').value;
+
+        if (!start || !end || !date || !time || !seats || seats <= 0) {
+          msg.style.color = 'salmon';
+          msg.textContent = 'Please fill all required fields.';
+          return;
+        }
+
+        const payload = {
+          driver_id: user.id,
+          start_location: start,
+          end_location: end,
+          departure_time: makeTimestamp(date, time),
+          available_seats: seats,
+          fare: fare ? parseFloat(fare) : null
+        };
+
+        try {
+          const res = await RidesAPI.createRide(payload);
+          // Normalized: backend returns an object with .ride (or array or single object)
+          let created = null;
+          if (res && res.ride) created = res.ride;
+          else if (Array.isArray(res) && res.length) created = res[0];
+          else if (res && res.id) created = res;
+
+          msg.style.color = '#9fffcf';
+          msg.textContent = res.message || 'Ride created successfully';
+
+          // prepend to table
+          if (created && tbody) {
+            const dt = new Date(created.departure_time);
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${dt.toLocaleDateString(undefined,{day:'2-digit',month:'short'})}</td>
+                            <td>${created.start_location} → ${created.end_location}</td>
+                            <td>-</td>
+                            <td>${created.fare ?? '-'}</td>
+                            <td>${created.available_seats}</td>`;
+            tbody.prepend(tr);
+          }
+
+          form.reset();
+        } catch (err) {
+          console.error('Create ride error', err);
+          msg.style.color = 'salmon';
+          msg.textContent = err.message || 'Failed to create ride';
+        }
+      });
+
+      // optional: if user arrives and already has driver rides, fetch them
+      async function loadDriverRides() {
+        const user = AuthAPI.getCurrentUser();
+        if (!user || user.role !== 'driver') return;
+        try {
+          const r = await RidesAPI.getDriverRides(user.id);
+          const rides = (r && r.rides) ? r.rides : r;
+          if (Array.isArray(rides) && rides.length) {
+            rides.slice(0, 10).forEach(created => {
+              const dt = new Date(created.departure_time);
+              const tr = document.createElement('tr');
+              tr.innerHTML = `<td>${dt.toLocaleDateString(undefined,{day:'2-digit',month:'short'})}</td>
+                              <td>${created.start_location} → ${created.end_location}</td>
+                              <td>-</td>
+                              <td>${created.fare ?? '-'}</td>
+                              <td>${created.available_seats}</td>`;
+              tbody.appendChild(tr);
+            });
+          }
+        } catch (err) {
+          console.warn('Could not load driver rides', err);
+        }
+      }
+
+      // run loader
+      document.addEventListener('DOMContentLoaded', loadDriverRides);
+    })();
+  </script>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>

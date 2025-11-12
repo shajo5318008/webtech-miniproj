@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EcoTransit | Dashboard</title>
   <link rel="stylesheet" href="./pradnya_style.css" />
-  <!-- Lucide icons CDN (lightweight icons) -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -34,7 +33,8 @@
 
       <!-- Option Cards -->
       <div class="dashboard-grid">
-        <a href="plan-trip.html" class="dashboard-card"><i data-lucide="notebook-pen"></i> <br>Plan a Trip</a>
+        <!-- changed link to plan-a-trip.html -->
+        <a href="plan-a-trip.html" class="dashboard-card"><i data-lucide="notebook-pen"></i> <br>Plan a Trip</a>
         <a href="weekly-analytics.html" class="dashboard-card"><i data-lucide="file-chart-line"></i></i><br>Weekly Analytics</a>
         <a href="carpool.html" class="dashboard-card"><i data-lucide="handshake"></i><br>Carpooling</a>
         <a href="user-score.html" class="dashboard-card"><i data-lucide="star"></i><br>User Score</a>
@@ -54,7 +54,7 @@
               <th>CO₂ Saved (kg)</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="recentTripsBody">
             <tr>
               <td>02 Sept</td>
               <td>Delhi → Gurgaon</td>
@@ -82,8 +82,13 @@
     </main>
     
   </div>
+
+  <!-- include api.js so initializePage() runs and currentUser is available -->
+  <script src="js/api.js"></script>
   <script>
     lucide.createIcons(); // activate sidebar icons
+    // initializePage is called by api.js on DOMContentLoaded; if you need to force-run:
+    // (function(){ if (window.initializePage) initializePage(); })();
   </script>
 </body>
 </html>
